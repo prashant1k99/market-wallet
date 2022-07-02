@@ -1,0 +1,32 @@
+{
+	"name": "marketplace-wallet",
+	"version": "0.0.1",
+	"description": "Wallet Marketplace ",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon index.js",
+		"heroku-start": "npm install && node index.js",
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/prashant1k99/market-wallet.git"
+	},
+	"author": "\"Prashant Singh\"",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/prashant1k99/market-wallet/issues"
+	},
+	"homepage": "https://github.com/prashant1k99/market-wallet#readme",
+	"dependencies": {
+		"ajv": "^8.11.0",
+		"express": "^4.18.1",
+		"firebase-admin": "^11.0.0",
+		"mongoose": "^6.4.1",
+		"stripe": "^9.10.0"
+	},
+	"devDependencies": {
+		"dotenv": "^16.0.1"
+	}
+}
