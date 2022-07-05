@@ -1,4 +1,4 @@
-const hasAdminAccess = (req, res, next) => {
+export const hasAdminAccess = (req, res, next) => {
   if (!req.auth) res.status(400).send('Invalid Request')
   if (!req.originalUrl.split('/').includes('admin')) {
     return next()

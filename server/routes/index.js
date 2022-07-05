@@ -1,17 +1,13 @@
 const express = require('express')
 
-const setupRoute = require('./setup')
-const transactRoute = require('./transact')
-const transactionRoute = require('./transaction')
-const walletRoute = require('./wallet')
+const userRoute = require('./user')
+const adminRoute = require('./admin')
 
 const app = express()
 app.use(express.json())
 app.disable('x-powered-by')
 
-app.use('/setup', setupRoute)
-app.use('/transact', transactRoute)
-app.use('/transactions', transactionRoute)
-app.use('/wallet', walletRoute)
+app.use('/user', userRoute)
+app.use('/admin', adminRoute)
 
 module.exports = app
