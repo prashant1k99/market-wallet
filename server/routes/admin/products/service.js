@@ -1,4 +1,4 @@
-const stripe = require('../../../util/stripe')
+const { stripe } = require('../../../util')
 const { APP_CURRENCY } = require('../../../config')
 const { Product } = require('../../../model')
 
@@ -51,7 +51,7 @@ export class ProdcutService {
 
   update(productId, updatedFields) {
     console.info(`${this.#LOG_IDENTIFIER} Create`);
-    return Product.updateOne({ _id: productId }, updatedFields)
+    return Product.findByIdAndUpdate(productId, updatedFields, { lean: true })
   }
 
   async submit(productId) {
@@ -91,15 +91,17 @@ export class ProdcutService {
   }
   
   disable(productId) {
-    return Promise.all([
-      Product.updateOne({_id: productId}, {
-        status: 'DISABLED'
-      }),
-      this.#stripe.producs.update({
-        id: productId,
-        active: false
-      })
-    ])
+    await Product.updateOne({_id: productId}, {
+      status: 'DISABLED'
+    })
+    await this.#stripe.producs.update({
+      id: productId,
+      active: false
+    })
+
+    return {
+      success: true
+    }
   }
   
   async delete(productId) {

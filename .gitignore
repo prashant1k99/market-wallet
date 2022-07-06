@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 **/firebase_admin_service_account.json
+package-lock.json
