@@ -3,7 +3,8 @@ const { body, param, query } = require('express-validator');
 const methodNames = {
   CREATE_PRODUCT: 'createProduct',
   PRODUCT_ID: 'productId',
-  FETCH_ALL: 'fetchAllProduct'
+  FETCH_ALL: 'fetchAllProduct',
+  UPDATE_PRODUCT: 'updateProduct'
 }
 
 Object.freeze(methodNames)
@@ -26,9 +27,13 @@ const productId = () => [
 const fetchAllProduct = () => [
   query('skip').isNumeric().optional(),
   query('limit').isNumeric().optional(),
-  query('status').optional()
+  query('status').optional().custom(value => ['DRAFT', 'ACTIVE', 'DISABLED'].includes(value))
 ]
 
+const updateProduct = () => [
+  ...productId(),
+  ...createProduct()
+]
 
 export function validate(method) {
   switch (method) {
@@ -40,6 +45,9 @@ export function validate(method) {
     }
     case methodNames.FETCH_ALL: {
       return fetchAllProduct();
+    }
+    case methodNames.UPDATE_PRODUCT: {
+      return updateProduct();
     }
     default: {
       log.warn(`No validation for method --> ${method}`);
