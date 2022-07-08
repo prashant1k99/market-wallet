@@ -1,7 +1,7 @@
 const ProdcutService = require('./service')
 const { handleError } = require('../../../util')
 
-export class ProductController {
+class ProductController {
   async create(req, res) {
     try {
       const {
@@ -130,3 +130,5 @@ export class ProductController {
     }
   }
 }
+
+module.exports = ProductController

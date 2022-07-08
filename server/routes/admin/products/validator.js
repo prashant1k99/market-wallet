@@ -35,7 +35,7 @@ const updateProduct = () => [
   ...createProduct()
 ]
 
-export function validate(method) {
+function validate(method) {
   switch (method) {
     case methodNames.CREATE_PRODUCT: {
       return createProduct();
@@ -54,4 +54,9 @@ export function validate(method) {
       return [];
     }
   }
+}
+
+module.exports = {
+  validate,
+  methodNames
 }

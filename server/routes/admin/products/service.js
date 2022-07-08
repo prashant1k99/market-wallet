@@ -2,7 +2,7 @@ const { stripe } = require('../../../util')
 const { APP_CURRENCY } = require('../../../config')
 const { Product } = require('../../../model')
 
-export class ProdcutService {
+class ProductService {
   #LOG_IDENTIFIER
   #stripe
 
@@ -90,7 +90,7 @@ export class ProdcutService {
     }
   }
   
-  disable(productId) {
+  async disable(productId) {
     await Product.updateOne({_id: productId}, {
       status: 'DISABLED'
     })
@@ -114,3 +114,5 @@ export class ProdcutService {
     }
   }
 }
+
+module.exports = ProductService

@@ -1,12 +1,12 @@
 const express = require('express')
 
-// const routes = require('./routes')
+const routes = require('./routes')
 
 const app = express()
 
 app.disable('x-powered-by')
 
-// app.use('/api', routes)
+app.use('/api', routes)
 app.use('/ping', (req, res) => {
   res.status(200).send('Working')
 })
