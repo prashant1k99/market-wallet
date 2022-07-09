@@ -3,16 +3,14 @@ const Schema = mongoose.Schema
 
 const walletSchema = new Schema(
   {
-    userId: { type: Schema.Types.ObjectId, ref: 'Customer' },
+    userId: { type: Schema.Types.ObjectId, ref: 'Customer', required: true, unique: true },
     balance: {
       type: Schema.Types.Decimal128,
       get: (balance) => {
         return parseFloat(balance.toString())
-      }
-    },
-    cards: [{
-      type: String
-    }]
+      },
+      default: 0
+    }
   },
   {
     timestamps: true
