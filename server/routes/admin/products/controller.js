@@ -1,4 +1,4 @@
-const ProdcutService = require('./service')
+const ProductService = require('./service')
 const { handleError } = require('../../../util')
 
 class ProductController {
@@ -11,7 +11,7 @@ class ProductController {
         description,
         price
       } = req.body
-      const productService = new ProdcutService()
+      const productService = new ProductService()
       const createdProduct = await productService.create({
         name,
         featuredImage,
@@ -28,7 +28,7 @@ class ProductController {
   async get(req, res) {
     try {
       const { productId } = req.params;
-      const productService = new ProdcutService()
+      const productService = new ProductService()
       const product = await productService.get(productId)
       if (!product) return res.status(404).send({
         msg: 'Product Not Found'
@@ -42,7 +42,7 @@ class ProductController {
   async getAll(req, res) {
     try {
       const { skip, limit, status } = req.query;
-      const productService = new ProdcutService()
+      const productService = new ProductService()
       const products = await productService.getAll(skip, limit, status)
       return res.status(200).send(products)
     } catch (err) {
@@ -53,7 +53,7 @@ class ProductController {
   async getActive(req, res) {
     try {
       const { skip, limit, status } = req.query;
-      const productService = new ProdcutService()
+      const productService = new ProductService()
       const products = await productService.getActive(skip, limit, status)
       return res.status(200).send(products)
     } catch (err) {
@@ -71,7 +71,7 @@ class ProductController {
         description,
         price
       } = req.body
-      const productService = new ProdcutService()
+      const productService = new ProductService()
       const product = await productService.update(productId, {
         name,
         featuredImage,
@@ -91,7 +91,7 @@ class ProductController {
   async submit(req, res) {
     try {
       const { productId } = req.params;
-      const productService = new ProdcutService()
+      const productService = new ProductService()
       const status = await productService.submit(productId)
       if (!status) return res.status(404).send({
         msg: 'Unable to Submit Product'
@@ -105,7 +105,7 @@ class ProductController {
   async disable(req, res) {
     try {
       const { productId } = req.params;
-      const productService = new ProdcutService()
+      const productService = new ProductService()
       const status = await productService.disable(productId)
       if (!status) return res.status(404).send({
         msg: 'Unable to disable Product, please try again'
@@ -119,7 +119,7 @@ class ProductController {
   async delete(req, res) {
     try {
       const { productId } = req.params;
-      const productService = new ProdcutService()
+      const productService = new ProductService()
       const status = await productService.disable(productId)
       if (!status) return res.status(404).send({
         msg: 'Unable to delete Product, please try again'
